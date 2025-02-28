@@ -1,0 +1,89 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/campus_malls?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  redis:
+    host: localhost
+    port: 6379
+    password: 
+    database: 0
+    timeout: 10000
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+mybatis:
+  type-aliases-package: com.campus.api.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+    use-generated-keys: true
+    default-statement-timeout: 60
+    cache-enabled: false
+
+jwt:
+  secret: ${JWT_SECRET:4Dj8KzEwNcMqL5pRtVx3yA9BgFhJnQsW2uX7vZYaCbPmTkHd6e}
+  expiration: 604800000
+  header: Authorization
+  token-prefix: "Bearer "
+
+wx:
+  miniapp:
+    appid: ${WX_APPID:wx5606485cb380b618}
+    secret: ${WX_SECRET:388fe8cb4a82797712b3c41b6463daee}
+
+# 文件上传配置
+upload:
+  path: /data/upload
+  allowed-types: image/jpeg,image/png,image/gif
+  max-size: 5242880
+  domain: ${DOMAIN_URL:http://localhost:8080}
+  
+# 阿里云OSS配置
+aliyun:
+  oss:
+    endpoint: ${OSS_ENDPOINT}
+    access-key-id: ${OSS_ACCESS_KEY_ID}
+    access-key-secret: ${OSS_ACCESS_KEY_SECRET}
+    bucket-name: ${OSS_BUCKET_NAME}
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/index.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: API docs
+    tags-sorter: alpha
+    operations-sorter: alpha
+  packages-to-scan: com.campus.api.controller
+  paths-to-match: /api/**
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

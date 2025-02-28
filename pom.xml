@@ -11,6 +11,7 @@
 	<groupId>com.campus</groupId>
 	<artifactId>campus-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>campus-api</name>
 	<description>校园商城API服务</description>
 	<url/>
@@ -123,6 +124,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>campus-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -143,6 +145,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<excludes>
 						<exclude>

@@ -1,18 +1,21 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "target/*.jar",
-      "use": "@vercel/java"
+    "version": 2,
+    "builds": [
+      {
+        "src": "pom.xml",
+        "use": "@vercel/java",
+        "config": {
+          "distDir": "target"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/api/v1/$1"
+      }
+    ],
+    "env": {
+      "SPRING_PROFILES_ACTIVE": "prod"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "target/*.jar"
-    }
-  ],
-  "env": {
-    "SPRING_PROFILES_ACTIVE": "prod"
-  }
-} 
+  } 

@@ -29,6 +29,7 @@ target/
 # Local environment
 .env
 .env.*
+application-dev.yml
 application-local.yml
 
 # System Files

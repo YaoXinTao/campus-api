@@ -30,6 +30,9 @@ spring:
       max-file-size: 10MB
       max-request-size: 100MB
 
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}  # 默认使用开发环境配置
+
 mybatis:
   type-aliases-package: com.campus.api.entity
   configuration:
